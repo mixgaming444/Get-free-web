@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Hosting Platform</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px 0;
+    }
+    header h1 {
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .upload-area {
+      border: 2px dashed #666;
+      padding: 40px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 20px 0;
+    }
+    .upload-area p {
+      margin: 0;
+      color: #333;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      color: white;
+      background-color: #333;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .btn:hover {
+      background-color: #555;
+    }
+    .file-list {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .file-list ul {
+      list-style: none;
+      padding: 0;
+    }
+    .file-list li {
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      margin-bottom: 5px;
+    }
+    footer {
+      margin-top: 20px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Website Hosting Platform</h1>
+</header>
+
+<div class="container">
+  <h2>Upload Your Files</h2>
+  <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+    <p>Click here or drag files to upload</p>
+  </div>
+  <input type="file" id="fileInput" multiple style="display: none;">
+  <div class="file-list">
+    <h3>Uploaded Files:</h3>
+    <ul id="fileList"></ul>
+  </div>
+  <a href="#" class="btn" onclick="simulateHosting()">Simulate Hosting</a>
+</div>
+
+<footer>
+  <p>Powered by Mix Gaming 444</p>
+</footer>
+
+<script>
+  const fileInput = document.getElementById('fileInput');
+  const fileList = document.getElementById('fileList');
+  const uploadedFiles = [];
+
+  // Simulate file upload
+  fileInput.addEventListener('change', (event) => {
+    const files = event.target.files;
+    for (const file of files) {
+      uploadedFiles.push(file);
+      const li = document.createElement('li');
+      li.textContent = file.name;
+      fileList.appendChild(li);
+    }
+  });
+
+  // Simulate hosting
+  function simulateHosting() {
+    if (uploadedFiles.length === 0) {
+      alert('Please upload at least one file to simulate hosting.');
+      return;
+    }
+    const htmlFile = uploadedFiles.find(file => file.name.endsWith('.html'));
+    if (!htmlFile) {
+      alert('Please upload an HTML file to simulate hosting.');
+      return;
+    }
+    const url = URL.createObjectURL(htmlFile);
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
